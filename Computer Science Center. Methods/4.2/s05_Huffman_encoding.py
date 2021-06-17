@@ -30,10 +30,13 @@ class Leaf(Weighted):
 
 
 class Forrest:
+    content: list[Weighted]
+
     def __init__(self):
         self.content = []
 
     def insert(self, _unit):
+        """ :param Weighted _unit: """
         self.content.append(_unit)
 
     def extract_minimum(self):
