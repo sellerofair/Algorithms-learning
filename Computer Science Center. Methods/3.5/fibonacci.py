@@ -40,6 +40,7 @@ def fib3(n):
 
 
 def timed(f, *args, n_iter=100):
+    """ Вычисляет время работы функции """
     acc = float('inf')
     for i in range(n_iter):
         t0 = time.perf_counter()
