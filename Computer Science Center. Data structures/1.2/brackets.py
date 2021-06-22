@@ -25,8 +25,7 @@ def check_brackets(string):
     brackets_stack = []
     indices_stack = []
 
-    for i in range(len(string)):
-        c = string[i]
+    for i, c in enumerate(string):
         if c in opening_brackets:
             brackets_stack.append(c)
             indices_stack.append(i)
