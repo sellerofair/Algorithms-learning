@@ -52,7 +52,7 @@ def merge_sort(numbers_list: List[int], start: int, end: int) -> Tuple[List[int]
 
         else:
             numbers_list[i] = left_sorted_part[i_left]
-            i_left += 1                
+            i_left += 1
 
     return numbers_list[start:end], total_inversions_number
 
