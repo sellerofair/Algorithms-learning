@@ -45,27 +45,39 @@ def read_data() -> Tuple[List[List[int]], List[int]]:
 
     print('segments_list:', segments_list)
 
-    dots_list = read_int_list()
-    fact_number_of_dots = len(dots_list)
+    dots_coordinates_list = read_int_list()
+    fact_number_of_dots = len(dots_coordinates_list)
     if fact_number_of_dots != number_of_dots:
         raise Exception(
             f'Unexpected number of dots; expected: {number_of_dots}; fact: {fact_number_of_dots}')
 
-    print('dots_list:', dots_list)
+    print('dots_coordinates_list:', dots_coordinates_list)
 
-    return segments_list, dots_list
+    return segments_list, dots_coordinates_list
 
-def count_dots_in_segments(segments_list, dots_list):
+def count_dots_in_segments(segments_list, dots_coordinates_list):
     '''
     Counts the number of segments that contain points
 
     Returns the list of intersections numbers
     '''
 
-    return segments_list, dots_list
+    dots_in_segments_count_list = []
+
+    for dot_coordinate in dots_coordinates_list:
+        dot_in_segments_count = 0
+        for segment in segments_list:
+            if segment[0] <= dot_coordinate <= segment[1]:
+                dot_in_segments_count += 1
+
+        dots_in_segments_count_list.append(dot_in_segments_count)
+
+    return dots_in_segments_count_list
 
 
 if __name__ == '__main__':
-    input_segments_list, input_dots_list = read_data()
+    # input_segments_list, input_dots_list = read_data()
+    input_segments_list = [[1, 4], [3, 6], [3, 12]]
+    input_dots_list = [3, 5, 10, 100]
     list_of_intersections = count_dots_in_segments(input_segments_list, input_dots_list)
-    print(' '.join(list_of_intersections))
+    print(*list_of_intersections)
