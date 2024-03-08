@@ -7,24 +7,20 @@ Quick sorting practice
 from typing import List, Tuple
 
 
-def read_int_list() -> List[int]:
-    '''Reads list of int numbers from stdin line'''
+Pair = Tuple[int, int]
 
-    int_list = [int(n) for n in input().split()]
 
-    return int_list
-
-def read_pair() -> List[int]:
+def read_pair() -> Pair:
     '''Reads pair of int numbers from stdin line'''
 
-    pair_list = read_int_list()
+    pair_list = tuple(int(n) for n in input().split())
 
     if len(pair_list) != 2:
-        raise Exception('Unexpected list length')
+        raise Exception('Unexpected Pair length')
 
     return pair_list
 
-def read_data() -> Tuple[List[List[int]], List[int]]:
+def read_data() -> Tuple[List[Pair], List[Pair]]:
     '''
     Reads input data from stdin by lines:
         - number of segments (n) and number of dots (m);
@@ -45,7 +41,7 @@ def read_data() -> Tuple[List[List[int]], List[int]]:
 
     print('segments_list:', segments_list)
 
-    dots_coordinates_list = read_int_list()
+    dots_coordinates_list = [int(n) for n in input().split()]
     fact_number_of_dots = len(dots_coordinates_list)
     if fact_number_of_dots != number_of_dots:
         raise Exception(
@@ -74,10 +70,29 @@ def count_dots_in_segments(segments_list, dots_coordinates_list):
 
     return dots_in_segments_count_list
 
+def quick_sort(source_list, comparison_function):
+    '''
+    Sorting list elements using comparison function
+
+    Comparison function is expected to return:
+     -  0 - elements are equal;
+     - -1 - first element is less then second;
+     -  1 - first element is greater then second.
+    '''
+
+    pass
+
 
 if __name__ == '__main__':
     # input_segments_list, input_dots_list = read_data()
-    input_segments_list = [[1, 4], [3, 6], [3, 12]]
-    input_dots_list = [3, 5, 10, 100]
+    input_segments_list = [[1, 4], [98, 100], [3, 6], [3, 12], [-2, 8], [0, 4]]
+    input_dots_list = [10, 3, 100, 5, 90]
+
+    print(enumerate(input_dots_list))
+
+    for i, n in enumerate(input_dots_list):
+        print(i, n)
+
     list_of_intersections = count_dots_in_segments(input_segments_list, input_dots_list)
+
     print(*list_of_intersections)
